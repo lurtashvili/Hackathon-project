@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css') }}">
+    <title>Login/Register</title>
+</head>
+<body>
+    <nav>
+        <br>
+        <ul class="nav__links">
+            <li class="link"><a href="{{ url_for('index') }}">Home</a></li>
+            <br>
+            <li class="link"><a href="{{ url_for('loginsignup') }}">Login/Register</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="signUpForm" method="POST" action="{{ url_for('loginsignup') }}">
+                <h1>Create Account</h1>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="phone" placeholder="Phone number" required>
+                <input type="text" name="gender" placeholder="Gender" required>
+                <button type="submit" name="signup">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="signInForm" method="POST" action="{{ url_for('loginsignup') }}">
+                <h1>Sign In</h1>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <a href="#">Forget Your Password?</a>
+                <button type="submit" name="login">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello!</h1>
+                    <p>Log in with your  personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='register.js') }}"></script>
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+    <script src="{{ url_for('static', filename='script1.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
+
+// Event listeners for buttons
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active"); // Add "active" class to show Sign Up form
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active"); // Remove "active" class to show Sign In form
+});
+    </script>
+</body>
+</html>
